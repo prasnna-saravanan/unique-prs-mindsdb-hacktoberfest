@@ -12,24 +12,33 @@ Example:
     "k0msenapati": (11801, 2),
 """
 
+import os
 from collections import defaultdict
 
 import requests
 
 # ---------------- CONFIGURATION ----------------
-
-HEADERS = {
-    "Accept": "application/vnd.github.squirrel-girl-preview+json",
-    # "Authorization": f"token {GITHUB_TOKEN}"  # Uncomment and add token if needed
-}
+# GITHUB_TOKEN = "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"
+# if not os.getenv("GITHUB_TOKEN"):
+#     HEADERS = {
+#         "Accept": "application/vnd.github+json",
+#         "Authorization": f"token {os.getenv('GITHUB_TOKEN')}",  # Uncomment and add token if needed
+#     }
+# else:
+#     print("failed to get token from environment variable")
+#     HEADERS = {
+#         "Accept": "application/vnd.github+json",
+#         "Authorization": f"token {GITHUB_TOKEN}",
+#     }
 
 # Each submitter: (issue_in_mindsdb_repo, issue_in_examples_repo)
 # Example: "prasanna": (11799, 1)
 ISSUE_MAP = {
     # "submitter_name": (mindsdb_issue_id, examples_issue_id),
-    # "vigbav36": (11799, 4),
+    "vigbav36": (11799, 4),
     "Aashish079": (11812, 7),
     "k0msenapati": (11801, 2),
+    "krishThakur": (11841, None),
 }
 
 REPOS = {"mindsdb": "mindsdb/mindsdb", "examples": "mindsdb/examples"}
@@ -42,11 +51,14 @@ def get_all_reactions(repo_full_name, issue_number):
     page = 1
     while True:
         url = f"https://api.github.com/repos/{repo_full_name}/issues/{issue_number}/reactions?per_page=100&page={page}"
+
         resp = requests.get(url, headers=HEADERS)
+        resp.raise_for_status()
         data = resp.json()
-        if not data:
-            break
+
         reactions.extend(data)
+        if len(data) < 100:
+            break
         page += 1
     return reactions
 
@@ -104,4 +116,13 @@ def main():
 
 
 if __name__ == "__main__":
+    if os.getenv("GITHUB_TOKEN"):
+        HEADERS = {
+            "Accept": "application/vnd.github+json",
+            "Authorization": f"token {os.getenv('GITHUB_TOKEN')}",  # Uncomment and add token if needed
+        }
+    else:
+        HEADERS = {
+            "Accept": "application/vnd.github+json",
+        }
     all_data, sorted_ranking = main()
