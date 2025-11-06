@@ -18,21 +18,6 @@ from collections import defaultdict
 import requests
 
 # ---------------- CONFIGURATION ----------------
-# GITHUB_TOKEN = "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"
-# if not os.getenv("GITHUB_TOKEN"):
-#     HEADERS = {
-#         "Accept": "application/vnd.github+json",
-#         "Authorization": f"token {os.getenv('GITHUB_TOKEN')}",  # Uncomment and add token if needed
-#     }
-# else:
-#     print("failed to get token from environment variable")
-#     HEADERS = {
-#         "Accept": "application/vnd.github+json",
-#         "Authorization": f"token {GITHUB_TOKEN}",
-#     }
-
-# Each submitter: (issue_in_mindsdb_repo, issue_in_examples_repo)
-# Example: "prasanna": (11799, 1)
 ISSUE_MAP = {
     # "submitter_name": (mindsdb_issue_id, examples_issue_id),
     "vigbav36": (11799, 4),
