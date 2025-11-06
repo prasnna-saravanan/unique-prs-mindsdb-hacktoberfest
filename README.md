@@ -1,23 +1,15 @@
-# MindsDB Hacktoberfest 2025 — Reaction Ranking Script 🎉
+# MindsDB Hacktoberfest 2025 — Reaction Ranking Script
 
 This script helps the community fairly aggregate reactions for Hacktoberfest PRs after they were moved from the main `mindsdb/mindsdb` repo to `mindsdb/examples`.
 
 ## Features
 
-✅ Combines reactions from both repos  
-✅ Handles pagination & deduplication per user  
-✅ Outputs a clean leaderboard  
-✅ Easy to extend — just add your name and PR IDs in `ISSUE_MAP`
+- Combines reactions from both repos
+- Handles pagination & deduplication per user
+- Outputs a clean leaderboard
+- Easy to extend — just add your name and PR IDs in `ISSUE_MAP`
 
 ## Usage
-
-### Prerequisites
-
-Install the required dependency:
-
-```bash
-pip install requests
-```
 
 ### Configuration
 
@@ -73,7 +65,4 @@ Fetching mindsdb/examples #2 for k0msenapati
 2. **Deduplication**: Ensures each user is counted only once across both repos
 3. **Ranking**: Counts unique reactors per submitter and sorts by total
 
-## License
-
-MIT
 
